@@ -15,6 +15,14 @@ The app features four screens:
 
 ---
 
+## Download APK
+
+Try the app directly on your Android device:
+
+[**Download APK from Google Drive**](https://drive.google.com/file/d/1I1XbEtOCgtqgU30gus6eVq_EfXPkJJbB/view?usp=sharing)
+
+---
+
 ## Tech Stack
 
 | Layer              | Choice                          | Rationale                                                    |
