@@ -1,35 +1,36 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-/// FinTech-inspired color palette — deep navy base with teal/mint accents.
+
 class AppColors {
   AppColors._();
 
   // ── Primary Palette ──
-  static const Color primary = Color(0xFF0D1B2A);       // Deep navy
-  static const Color primaryLight = Color(0xFF1B2D45);   // Lighter navy
-  static const Color accent = Color(0xFF00C9A7);         // Teal/mint accent
-  static const Color accentLight = Color(0xFFE0FFF8);    // Teal tint
+  static const Color primary = Color(0xFF0D1B2A);       
+  static const Color primaryLight = Color(0xFF1B2D45);   
+  static const Color accent = Color(0xFF00C9A7);         
+  static const Color accentLight = Color(0xFFE0FFF8);    
 
   // ── Surface & Background ──
-  static const Color background = Color(0xFFF6F8FB);     // Cool grey bg
+  static const Color background = Color(0xFFF6F8FB);    
   static const Color surface = Color(0xFFFFFFFF);
   static const Color surfaceVariant = Color(0xFFF0F3F8);
   static const Color cardBorder = Color(0xFFE8ECF2);
 
-  // ── Text ──
+  //  Text 
   static const Color textPrimary = Color(0xFF0D1B2A);
   static const Color textSecondary = Color(0xFF6B7A8D);
   static const Color textTertiary = Color(0xFF9EAAB8);
 
-  // ── Status ──
+  //  Status 
   static const Color success = Color(0xFF00C9A7);
   static const Color warning = Color(0xFFFFB020);
   static const Color error = Color(0xFFFF4D6A);
   static const Color pending = Color(0xFFFFA630);
 
-  // ── Category Colors ──
+  //  Category Colors 
   static const Color groceries = Color(0xFF4CAF50);
   static const Color transportation = Color(0xFF2196F3);
   static const Color dining = Color(0xFFFF7043);
@@ -97,13 +98,13 @@ class AppTheme {
         titleTextStyle: baseTextTheme.titleLarge?.copyWith(
           fontWeight: FontWeight.w700,
           color: AppColors.textPrimary,
-          fontSize: 20,
+          fontSize: 20.sp,
         ),
       ),
       cardTheme: CardThemeData(
         elevation: 0,
         shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(16),
+          borderRadius: BorderRadius.circular(16.r),
           side: const BorderSide(color: AppColors.cardBorder, width: 1),
         ),
         color: AppColors.surface,
@@ -116,32 +117,32 @@ class AppTheme {
           fontWeight: FontWeight.w500,
         ),
         shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(20),
+          borderRadius: BorderRadius.circular(20.r),
         ),
         side: BorderSide.none,
-        padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
+        padding:  EdgeInsets.symmetric(horizontal: 12.w, vertical: 6.h),
       ),
       inputDecorationTheme: InputDecorationTheme(
         filled: true,
         fillColor: AppColors.surfaceVariant,
         contentPadding:
-            const EdgeInsets.symmetric(horizontal: 16, vertical: 14),
+            EdgeInsets.symmetric(horizontal: 16.w, vertical: 14.h),
         border: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(12),
+          borderRadius: BorderRadius.circular(12.r),
           borderSide: BorderSide.none,
         ),
         enabledBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(12),
+          borderRadius: BorderRadius.circular(12.r),
           borderSide: BorderSide.none,
         ),
         focusedBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(12),
+          borderRadius: BorderRadius.circular(12.r),
           borderSide:
-              const BorderSide(color: AppColors.accent, width: 1.5),
+               BorderSide(color: AppColors.accent, width: 1.5.w),
         ),
         errorBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(12),
-          borderSide: const BorderSide(color: AppColors.error, width: 1),
+          borderRadius: BorderRadius.circular(12.r),
+          borderSide:  BorderSide(color: AppColors.error, width: 1.w),
         ),
         hintStyle: baseTextTheme.bodyMedium?.copyWith(
           color: AppColors.textTertiary,
@@ -152,13 +153,13 @@ class AppTheme {
           backgroundColor: AppColors.primary,
           foregroundColor: Colors.white,
           elevation: 0,
-          padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 16),
+          padding:  EdgeInsets.symmetric(horizontal: 24.w, vertical: 16.h),
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(12),
           ),
           textStyle: baseTextTheme.labelLarge?.copyWith(
             fontWeight: FontWeight.w600,
-            fontSize: 16,
+            fontSize: 16.sp,
           ),
         ),
       ),
