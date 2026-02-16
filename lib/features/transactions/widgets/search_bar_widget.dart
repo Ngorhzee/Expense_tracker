@@ -1,9 +1,9 @@
 import 'package:expense_traker/features/transactions/providers/transaction_provider.dart';
-import 'package:expense_traker/widget/app_text_field.dart';
+import 'package:expense_traker/shared/widgets/app_text_field.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import '../../../../core/theme/app_theme.dart';
+
 
 class SearchBarWidget extends ConsumerStatefulWidget {
   const SearchBarWidget({super.key});

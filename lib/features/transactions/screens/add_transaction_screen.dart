@@ -1,4 +1,4 @@
-import 'package:expense_traker/widget/app_text_field.dart';
+import 'package:expense_traker/shared/widgets/app_text_field.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -12,6 +12,7 @@ import '../models/transaction.dart';
 import '../providers/transaction_provider.dart';
 
 class AddTransactionScreen extends ConsumerStatefulWidget {
+  static const routeName = 'addTransaction';
   const AddTransactionScreen({super.key});
 
   @override
@@ -257,7 +258,7 @@ class _AddTransactionScreenState extends ConsumerState<AddTransactionScreen> {
 
                       const SizedBox(height: 24),
 
-                      // Note field (optional)
+                    
                       _FieldLabel('Note (optional)'),
                       const SizedBox(height: 8),
                       TextFormField(
@@ -272,7 +273,7 @@ class _AddTransactionScreenState extends ConsumerState<AddTransactionScreen> {
 
                       const SizedBox(height: 40),
 
-                      // Submit button
+                     
                       SizedBox(
                         width: double.infinity,
                         height: 56,

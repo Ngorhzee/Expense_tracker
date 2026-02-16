@@ -5,6 +5,7 @@ import '../../../core/utils/helpers.dart';
 import '../models/transaction.dart';
 
 class TransactionDetailScreen extends StatelessWidget {
+static const routeName = 'transactionDetail';
   final Transaction transaction;
 
   const TransactionDetailScreen({super.key, required this.transaction});
