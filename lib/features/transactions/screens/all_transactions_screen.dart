@@ -1,3 +1,4 @@
+import 'package:expense_traker/shared/widgets/header_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -23,65 +24,22 @@ class AllTransactionsScreen extends ConsumerWidget {
       body: SafeArea(
         child: Column(
           children: [
-          
-            Padding(
-              padding: EdgeInsets.fromLTRB(8.w, 8.h, 20.w, 0),
-              child: Row(
-                children: [
-                  IconButton(
-                    onPressed: () {
-                      // Reset filters when leaving
-                      ref.read(searchQueryProvider.notifier).state = '';
-                      ref.read(selectedCategoryProvider.notifier).state = null;
-                      context.pop();
-                    },
-                    icon:  Icon(Icons.keyboard_arrow_left_rounded, size: 24.sp),
-                    style: IconButton.styleFrom(
-                      backgroundColor: AppColors.surfaceVariant,
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(12.r),
-                      ),
-                    ),
-                  ),
-                  const Spacer(),
-                  Text(
-                    'All Transactions',
-                    style: Theme.of(context).textTheme.titleMedium,
-                  ),
-                  const Spacer(),
-                  
-                  Container(
-                    padding:
-                         EdgeInsets.symmetric(horizontal: 10.w, vertical: 4.h),
-                    decoration: BoxDecoration(
-                      color: AppColors.primary,
-                      borderRadius: BorderRadius.circular(20),
-                    ),
-                    child: Text(
-                      '$totalCount',
-                      style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                            color: Colors.white,
-                            fontWeight: FontWeight.w600,
-                          ),
-                    ),
-                  ),
-                ],
-              ),
-            ),
+           HeaderWidget(title: "All Transactions", onBack: () {
+            
+              ref.read(searchQueryProvider.notifier).state = '';
+              ref.read(selectedCategoryProvider.notifier).state = null;
+              context.pop();
+            },),
+            SizedBox(height: 16.h),
 
-             SizedBox(height: 16.h),
-
-           
             const SearchBarWidget(),
 
-             SizedBox(height: 12.h),
+            SizedBox(height: 12.h),
 
-           
             const CategoryFilterChips(),
 
-             SizedBox(height: 8.h),
+            SizedBox(height: 8.h),
 
-          
             Padding(
               padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 8.h),
               child: Row(
@@ -89,70 +47,75 @@ class AllTransactionsScreen extends ConsumerWidget {
                 children: [
                   Text(
                     'Results',
-                    style: Theme.of(context)
-                        .textTheme
-                        .titleSmall
-                        ?.copyWith(fontWeight: FontWeight.w600),
+                    style: Theme.of(context).textTheme.titleSmall?.copyWith(
+                      fontWeight: FontWeight.w600,
+                    ),
                   ),
                   Text(
                     '${filteredTransactions.length} of $totalCount',
-                    style: Theme.of(context)
-                        .textTheme
-                        .bodySmall
-                        ?.copyWith(color: AppColors.textTertiary),
+                    style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                      color: AppColors.textTertiary,
+                    ),
                   ),
                 ],
               ),
             ),
 
-          
             Expanded(
-              child: filteredTransactions.isEmpty
-                  ? Center(
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Icon(
-                            Icons.search_rounded,
-                            size: 48,
-                            color: AppColors.textTertiary.withValues(alpha:  0.5),
-                          ),
-                          const SizedBox(height: 12),
-                          Text(
-                            'No transactions found',
-                            style: Theme.of(context)
-                                .textTheme
-                                .bodyMedium
-                                ?.copyWith(color: AppColors.textTertiary),
-                          ),
-                          const SizedBox(height: 4),
-                          Text(
-                            'Try a different search or filter',
-                            style: Theme.of(context)
-                                .textTheme
-                                .bodySmall
-                                ?.copyWith(color: AppColors.textTertiary),
-                          ),
-                        ],
+              child:
+                  filteredTransactions.isEmpty
+                      ? Center(
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Icon(
+                              Icons.search_rounded,
+                              size: 48,
+                              color: AppColors.textTertiary.withValues(
+                                alpha: 0.5,
+                              ),
+                            ),
+                            const SizedBox(height: 12),
+                            Text(
+                              'No transactions found',
+                              style: Theme.of(context).textTheme.bodyMedium
+                                  ?.copyWith(color: AppColors.textTertiary),
+                            ),
+                            const SizedBox(height: 4),
+                            Text(
+                              'Try a different search or filter',
+                              style: Theme.of(context).textTheme.bodySmall
+                                  ?.copyWith(color: AppColors.textTertiary),
+                            ),
+                          ],
+                        ),
+                      )
+                      : RefreshIndicator(
+                        color: AppColors.accent,
+                        onRefresh:
+                            () =>
+                                ref
+                                    .read(transactionProvider.notifier)
+                                    .refresh(),
+                        child: ListView.separated(
+                          padding: EdgeInsets.fromLTRB(20.w, 4.h, 20.w, 20.h),
+                          physics: const BouncingScrollPhysics(),
+                          itemCount: filteredTransactions.length,
+                          separatorBuilder: (_, __) => SizedBox(height: 10.h),
+                          itemBuilder: (context, index) {
+                            final transaction = filteredTransactions[index];
+                            return TransactionTile(
+                              transaction: transaction,
+                              onTap:
+                                  () => context.pushNamed(
+                                    'transactionDetail',
+                                    pathParameters: {'id': transaction.id},
+                                    extra: transaction,
+                                  ),
+                            );
+                          },
+                        ),
                       ),
-                    )
-                  : ListView.separated(
-                      padding:  EdgeInsets.fromLTRB(20.w, 4.h, 20.w, 20.h),
-                      physics: const BouncingScrollPhysics(),
-                      itemCount: filteredTransactions.length,
-                      separatorBuilder: (_, __) =>  SizedBox(height: 10.h),
-                      itemBuilder: (context, index) {
-                        final transaction = filteredTransactions[index];
-                        return TransactionTile(
-                          transaction: transaction,
-                          onTap: () => context.pushNamed(
-                            'transactionDetail',
-                            pathParameters: {'id': transaction.id},
-                            extra: transaction,
-                          ),
-                        );
-                      },
-                    ),
             ),
           ],
         ),

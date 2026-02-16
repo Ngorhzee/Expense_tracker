@@ -1,3 +1,4 @@
+import 'package:expense_traker/shared/widgets/header_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import '../../../core/theme/app_theme.dart';
@@ -20,31 +21,7 @@ static const routeName = 'transactionDetail';
       body: SafeArea(
         child: Column(
           children: [
-            // ── Top Bar ──
-            Padding(
-              padding: const EdgeInsets.fromLTRB(8, 8, 20, 0),
-              child: Row(
-                children: [
-                  IconButton(
-                    onPressed: () => context.pop(),
-                    icon: const Icon(Icons.arrow_left, size: 24),
-                    style: IconButton.styleFrom(
-                      backgroundColor: AppColors.surfaceVariant,
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(12),
-                      ),
-                    ),
-                  ),
-                  const Spacer(),
-                  Text(
-                    'Transaction Details',
-                    style: Theme.of(context).textTheme.titleMedium,
-                  ),
-                  const Spacer(),
-                  const SizedBox(width: 48), // balance
-                ],
-              ),
-            ),
+           HeaderWidget(title: "Transaction Details"),
 
             const SizedBox(height: 24),
 

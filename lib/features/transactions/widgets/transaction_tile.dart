@@ -4,7 +4,6 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../../../core/theme/app_theme.dart';
 import '../../../../core/utils/helpers.dart';
 
-
 class TransactionTile extends StatelessWidget {
   final Transaction transaction;
   final VoidCallback onTap;
@@ -22,7 +21,7 @@ class TransactionTile extends StatelessWidget {
     return GestureDetector(
       onTap: onTap,
       child: Container(
-        padding:  EdgeInsets.all(16.w),
+        padding: EdgeInsets.all(16.w),
         decoration: BoxDecoration(
           color: AppColors.surface,
           borderRadius: BorderRadius.circular(14.r),
@@ -35,7 +34,7 @@ class TransactionTile extends StatelessWidget {
               width: 46.w,
               height: 46.w,
               decoration: BoxDecoration(
-                color: categoryColor.withValues(alpha:  0.1),
+                color: categoryColor.withValues(alpha: 0.1),
                 borderRadius: BorderRadius.circular(12.r),
               ),
               child: Icon(
@@ -44,7 +43,7 @@ class TransactionTile extends StatelessWidget {
                 size: 22.sp,
               ),
             ),
-             SizedBox(width: 14.w),
+            SizedBox(width: 14.w),
 
             // Merchant, category & date
             Expanded(
@@ -54,9 +53,9 @@ class TransactionTile extends StatelessWidget {
                   Text(
                     transaction.merchant,
                     style: Theme.of(context).textTheme.titleSmall?.copyWith(
-                          fontWeight: FontWeight.w600,
-                          color: AppColors.textPrimary,
-                        ),
+                      fontWeight: FontWeight.w600,
+                      color: AppColors.textPrimary,
+                    ),
                     maxLines: 1,
                     overflow: TextOverflow.ellipsis,
                   ),
@@ -65,11 +64,10 @@ class TransactionTile extends StatelessWidget {
                     children: [
                       Text(
                         transaction.category!.label,
-                        style:
-                            Theme.of(context).textTheme.bodySmall?.copyWith(
-                                  color: AppColors.textTertiary,
-                                  fontSize: 12.sp,
-                                ),
+                        style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                          color: AppColors.textTertiary,
+                          fontSize: 10.sp,
+                        ),
                       ),
                       SizedBox(width: 6.w),
                       Container(
@@ -83,11 +81,10 @@ class TransactionTile extends StatelessWidget {
                       SizedBox(width: 6.w),
                       Text(
                         formatDateRelative(transaction.date),
-                        style:
-                            Theme.of(context).textTheme.bodySmall?.copyWith(
-                                  color: AppColors.textTertiary,
-                                  fontSize: 12.sp,
-                                ),
+                        style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                          color: AppColors.textTertiary,
+                          fontSize: 10.sp,
+                        ),
                       ),
                     ],
                   ),
@@ -102,11 +99,11 @@ class TransactionTile extends StatelessWidget {
                 Text(
                   '-${formatCurrency(transaction.displayAmount)}',
                   style: Theme.of(context).textTheme.titleSmall?.copyWith(
-                        fontWeight: FontWeight.w700,
-                        color: AppColors.textPrimary,
-                      ),
+                    fontWeight: FontWeight.w700,
+                    color: AppColors.textPrimary,
+                  ),
                 ),
-                 SizedBox(height: 3.h),
+                SizedBox(height: 3.h),
                 _StatusBadge(status: transaction.status),
               ],
             ),
@@ -133,10 +130,10 @@ class _StatusBadge extends StatelessWidget {
       child: Text(
         status.label,
         style: Theme.of(context).textTheme.bodySmall?.copyWith(
-              color: color,
-              fontSize: 10.sp,
-              fontWeight: FontWeight.w600,
-            ),
+          color: color,
+          fontSize: 10.sp,
+          fontWeight: FontWeight.w600,
+        ),
       ),
     );
   }

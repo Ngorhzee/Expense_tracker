@@ -1,4 +1,5 @@
 import 'package:expense_traker/shared/widgets/app_text_field.dart';
+import 'package:expense_traker/shared/widgets/header_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -120,37 +121,11 @@ class _AddTransactionScreenState extends ConsumerState<AddTransactionScreen> {
       body: SafeArea(
         child: Column(
           children: [
-            Padding(
-              padding: const EdgeInsets.fromLTRB(8, 8, 20, 0),
-              child: Row(
-                children: [
-                  IconButton(
-                    onPressed: () => context.pop(),
-                    icon: const Icon(
-                      Icons.keyboard_arrow_left_outlined,
-                      size: 24,
-                    ),
-                    style: IconButton.styleFrom(
-                      backgroundColor: AppColors.surfaceVariant,
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(12),
-                      ),
-                    ),
-                  ),
-                  const Spacer(),
-                  Text(
-                    'Add Transaction',
-                    style: Theme.of(context).textTheme.titleMedium,
-                  ),
-                  const Spacer(),
-                  SizedBox(width: 48.w),
-                ],
-              ),
-            ),
+            HeaderWidget(title: "Add Transaction"),
 
             SizedBox(height: 24.h),
 
-            // ── Form ──
+           
             Expanded(
               child: SingleChildScrollView(
                 padding: EdgeInsets.symmetric(horizontal: 20.w),
@@ -202,7 +177,7 @@ class _AddTransactionScreenState extends ConsumerState<AddTransactionScreen> {
                         },
                       ),
 
-                       SizedBox(height: 24.h),
+                      SizedBox(height: 24.h),
 
                       // Category picker
                       _FieldLabel('Category'),
@@ -213,11 +188,11 @@ class _AddTransactionScreenState extends ConsumerState<AddTransactionScreen> {
                             (cat) => setState(() => _selectedCategory = cat),
                       ),
 
-                       SizedBox(height: 24.h),
+                      SizedBox(height: 24.h),
 
                       // Date picker
                       _FieldLabel('Date'),
-                       SizedBox(height: 8.h),
+                      SizedBox(height: 8.h),
                       GestureDetector(
                         onTap: _pickDate,
                         child: Container(
@@ -232,7 +207,7 @@ class _AddTransactionScreenState extends ConsumerState<AddTransactionScreen> {
                           ),
                           child: Row(
                             children: [
-                               Icon(
+                              Icon(
                                 Icons.calendar_month_outlined,
                                 size: 20.sp,
                                 color: AppColors.textTertiary,
@@ -258,7 +233,6 @@ class _AddTransactionScreenState extends ConsumerState<AddTransactionScreen> {
 
                       const SizedBox(height: 24),
 
-                    
                       _FieldLabel('Note (optional)'),
                       const SizedBox(height: 8),
                       TextFormField(
@@ -273,7 +247,6 @@ class _AddTransactionScreenState extends ConsumerState<AddTransactionScreen> {
 
                       const SizedBox(height: 40),
 
-                     
                       SizedBox(
                         width: double.infinity,
                         height: 56,
@@ -289,9 +262,11 @@ class _AddTransactionScreenState extends ConsumerState<AddTransactionScreen> {
                                       strokeWidth: 2.5,
                                     ),
                                   )
-                                  :  Text(
+                                  : Text(
                                     'Add Transaction',
-                                    style:Theme.of(context).textTheme.labelLarge?.copyWith(
+                                    style: Theme.of(
+                                      context,
+                                    ).textTheme.labelLarge?.copyWith(
                                       fontSize: 16.sp,
                                       fontWeight: FontWeight.w600,
                                     ),
@@ -359,7 +334,7 @@ class _CategoryPicker extends StatelessWidget {
                 decoration: BoxDecoration(
                   color:
                       isSelected
-                          ? color.withValues(alpha:  0.15)
+                          ? color.withValues(alpha: 0.15)
                           : AppColors.surfaceVariant,
                   borderRadius: BorderRadius.circular(12),
                   border: Border.all(
